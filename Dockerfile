@@ -1,8 +1,16 @@
-# Utiliser l'image officielle de Traccar
-FROM traccar/traccar:latest
+# Utilise une image Java officielle
+FROM openjdk:17-jdk-slim
 
-# Exposer le port 8082 pour l'interface web
-EXPOSE 8082
+# Crée un dossier pour l'app
+WORKDIR /app
 
-# S'assurer que le service Traccar écoute sur le port 8082
-CMD ["sh", "-c", "exec /opt/traccar/bin/traccar.xml -web.port 8082"]
+# Copie ton fichier JAR dans le conteneur
+COPY target/mon-app.jar app.jar
+
+# Expose le port si besoin (optionnel)
+EXPOSE 8080
+
+# Commande de démarrage
+CMD ["java", "-jar", "app.jar"]
+
+

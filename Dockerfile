@@ -1,16 +1,15 @@
-# Utilise une image Java officielle
+# Utilise l'image officielle Java
 FROM openjdk:17-jdk-slim
 
-# Crée un dossier pour l'app
+# Dossier de travail
 WORKDIR /app
 
-# Copie ton fichier JAR dans le conteneur
+# Copie le JAR compilé
 COPY target/mon-app.jar app.jar
 
-# Expose le port si besoin (optionnel)
+# Port exposé (à adapter selon ton app)
 EXPOSE 8080
 
 # Commande de démarrage
 CMD ["java", "-jar", "app.jar"]
-
 
